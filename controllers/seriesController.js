@@ -7,7 +7,7 @@ const post = async (req, res) => {
 }
 
 const get = function (req, res) {
-  const search = SerieModel.find({}).exec().then(function (result) {
+    SerieModel.find({}).exec().then(function (result) {
     res.json({result})
   })
 }
