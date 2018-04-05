@@ -1,4 +1,4 @@
-const SerieModel = require('./models/series')
+const SerieModel = require('../models/series')
 
 const post = async (req, res) => {
   const newSchema = new SerieModel(req.body)
