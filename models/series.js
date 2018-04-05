@@ -5,7 +5,7 @@ const serieModel = new Schema({
   title: String,
   gender: String,
   seasons: Number,
-  clasification: string
+  clasification: String
 })
 
 module.exports = mongoose.model('serieModel', serieModel)
