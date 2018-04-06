@@ -2,6 +2,9 @@ const express = require('express')
 const Router = express.Router()
 const serieController = require('./controllers/seriesController')
 const userController = require('./controllers/usersController')
+const accountController = require('./controllers/accountController')
+
+// series
 const movieController = require('./controllers/moviesController')
 
 //Serie Routes
@@ -15,6 +18,12 @@ Router.delete('/user/:id', userController.deleteOne)
 Router.put('/user/:id', userController.update)
 Router.post('/user', userController.post)
 Router.get('/user', userController.get)
+// account
+
+Router.delete('/account/:id', accountController.deleteOne)
+Router.put('/account/:id', accountController.update)
+Router.post('/account', accountController.post)
+Router.get('/account', accountController.get)
 
 //Movie Routes
 Router.delete('/movie/:id', movieController.deleteOne)
