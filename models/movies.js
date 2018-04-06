@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const serieModel = new Schema({
+const movieModel = new Schema({
   title: String,
   gender: String,
-  seasons: Number,
+  duration_minutes: Number,
   clasification: String
 })
 
-module.exports = mongoose.model('serieModel', serieModel)
+module.exports = mongoose.model('movies', movieModel)
