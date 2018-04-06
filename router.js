@@ -24,6 +24,7 @@ Router.delete('/account/:id', accountController.deleteOne)
 Router.put('/account/:id', accountController.update)
 Router.post('/account', accountController.post)
 Router.get('/account', accountController.get)
+Router.get('/addusers/:id', accountController.addUsers)
 
 //Movie Routes
 Router.delete('/movie/:id', movieController.deleteOne)
