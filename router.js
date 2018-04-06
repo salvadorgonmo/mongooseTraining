@@ -3,9 +3,8 @@ const Router = express.Router()
 const serieController = require('./controllers/seriesController')
 const userController = require('./controllers/usersController')
 const accountController = require('./controllers/accountController')
-
-// series
 const movieController = require('./controllers/moviesController')
+const accountController = require('./controllers/documentalsController')
 
 //Serie Routes
 Router.delete('/serie/:id', serieController.deleteOne)

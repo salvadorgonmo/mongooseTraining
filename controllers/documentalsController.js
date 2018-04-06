@@ -1,4 +1,4 @@
-const DocumentalModel = require('../models/series')
+const DocumentalModel = require('../models/documental')
 
 const post = async (req, res) => {
   const newSchema = new DocumentalModel(req.body)
