@@ -15,5 +15,10 @@ Router.put('/movie/:id', movieController.update)
 Router.post('/movie', movieController.post)
 Router.get('/movie', movieController.get)
 
+//Documental  Routes
+Router.delete('/documental/:id', documentalController.deleteOne)
+Router.put('/documental/:id', documentalController.update)
+Router.post('/documental', documentalController.post)
+Router.get('/documental', documentalController.get)
 
 module.exports = Router
