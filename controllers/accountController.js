@@ -6,9 +6,10 @@ const post = async (req, res) => {
     res.json({newSchema})
 }
   
-const get = async (req, res) => {
-    await AccountModel.find({})
-    //res.json(result)
+const get = function (req, res) {
+    AccountModel.find({}).exec().then(function (result) {
+    res.json({result})
+  })
 }
   
 const update = async function (req, res) {
