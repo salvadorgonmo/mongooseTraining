@@ -4,7 +4,7 @@ const serieController = require('./controllers/seriesController')
 const userController = require('./controllers/usersController')
 const accountController = require('./controllers/accountController')
 const movieController = require('./controllers/moviesController')
-const accountController = require('./controllers/documentalsController')
+const documentalController = require('./controllers/documentalsController')
 
 //Serie Routes
 Router.delete('/serie/:id', serieController.deleteOne)
@@ -17,8 +17,8 @@ Router.delete('/user/:id', userController.deleteOne)
 Router.put('/user/:id', userController.update)
 Router.post('/user', userController.post)
 Router.get('/user', userController.get)
-// account
 
+//Account Routes
 Router.delete('/account/:id', accountController.deleteOne)
 Router.put('/account/:id', accountController.update)
 Router.post('/account', accountController.post)
