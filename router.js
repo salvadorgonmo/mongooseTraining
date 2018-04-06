@@ -12,7 +12,7 @@ Router.put('/serie/:id', serieController.update)
 Router.post('/serie', serieController.post)
 Router.get('/serie', serieController.get)
 
-// account
+//Account Routes
 
 Router.delete('/account/:id', accountController.deleteOne)
 Router.put('/account/:id', accountController.update)
