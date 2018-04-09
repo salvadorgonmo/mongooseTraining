@@ -1,38 +1,55 @@
 const UserModel = require('../models/users')
 const accounModel = require('../models/account')
 
+
 const post = async (req, res) => {
     const newSchema = new UserModel({
-      _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
-      name: req.body.type
+      type: req.body.type,
+      account: req.params.id
     })
-    await newSchema.save()
-    res.json({newSchema})
+    try {
+      let saved = await newSchema.save()
+      saved ? res.send(newSchema) : res.status(400).send({message: 'user error'})
+    } catch (err) {
+      console.log(err)
+      res.status(500).send({message: 'error saving user'})
+    }
   }
   
   const get = function (req, res) {
-      UserModel.find({}).exec().then(function (result) {
-      res.json({result})
-    })
+      let id_account = req.params.id
+      UserModel.find({account: id_account} ).populate({path: 'account'}).exec((err, result) => {
+        if(err){
+          console.log(err)
+          res.estatus(500).send({message: 'error in data data base'})
+        }
+        else{
+          result.length > 0 ? res.send(result) : res.send({message: 'there is not users saved'})
+        }
+      })
   }
   
   const update = async function (req, res) {
-    await UserModel.findOneAndUpdate({_id: req.params.id}, req.body)
-    res.send()
+    try{
+      let userUpdated = await UserModel.findOneAndUpdate({_id: req.params.id}, req.body)
+      userUpdated ? res.send({ message: 'update success'}) : res.status(400).send({ message: 'user error'})
+    }catch(err){
+      console.log(err)
+      res.status(500).send({message: 'error updating user '})
+    }
   }
   
   const deleteOne = async function (req, res) {
-    await UserModel.findOneAndRemove({_id: req.params.id})
-    res.send()
+    try{
+      let userDeleted = await UserModel.findOneAndRemove({_id: req.params.id})
+      userDeleted ? res.send({ message: 'user ' +userDeleted.name+ ' deleted'}) : res.status(400).send({ message: 'user error'})
+    }catch(err){
+      console.log(err)
+      res.status(500).send({message: 'error deleting user '})
+    }
   }
 
-  const addUserToAccount = async function( id_account, user ) {
-    let account = await accountModel.find({_id: id})
-    account.users.push(user._id)
-    accounModel.findOneAndUpdate({_id: id, account})
-  }
-  
   module.exports = {
     post,
     get,
