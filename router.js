@@ -14,16 +14,18 @@ Router.post('/serie', serieController.post)
 Router.get('/serie', serieController.get)
 
 //Users Controllers 
-Router.delete('/user/:id', userController.deleteOne)
-Router.put('/user/:id', userController.update)
-Router.post('/user', userController.post)
-Router.get('/user', userController.get)
+Router.delete('/account/:account_id/user/:id', userController.deleteOne)
+Router.put('/account/:account_id/user/:id', userController.update)
+Router.post('/account/:account_id/user', userController.post)
+Router.get('/account/:account_id/user', userController.get)
 
 //Account Routes
 Router.delete('/account/:id', accountController.deleteOne)
 Router.put('/account/:id', accountController.update)
 Router.post('/account', accountController.post)
 Router.get('/account', accountController.get)
+
+Router.get('/account/:id', accountController.getOne)
 
 //Movie Routes
 Router.delete('/movie/:id', movieController.deleteOne)
@@ -36,5 +38,6 @@ Router.delete('/documental/:id', documentalController.deleteOne)
 Router.put('/documental/:id', documentalController.update)
 Router.post('/documental', documentalController.post)
 Router.get('/documental', documentalController.get)
+
 
 module.exports = Router
