@@ -3,6 +3,7 @@ const app = express()
 const port = 4040
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const session = require('express-session')
 mongoose.connect('mongodb://localhost/serieNetflix')
 
 var db = mongoose.connection
@@ -12,6 +13,13 @@ db.once('open', function() {
 })
 
 app.use(bodyParser.urlencoded({ extended: false}))
+
+//use sessions for tracking logins
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false
+}))
 
 const router = require('./router')
 

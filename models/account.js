@@ -12,10 +12,6 @@ const accountModel = new Schema({
     type: String,
     required: true,
   },
-  passwordConf: {
-    type: String,
-    required: true,
-  },
   phone: String,
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}]
 })
