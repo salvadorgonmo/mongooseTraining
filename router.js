@@ -12,7 +12,7 @@ const objMiddleware = require('./middlewares/validate-req')
 const auth = authMiddleware.isAuthenticated
 
 //Object validate middlware
-const { accountValidation: objAccount } = objMiddleware
+const { objAccount: accountValidation } = objMiddleware
 const { objUser: userValidation } = objMiddleware
 const { objDocumental: docValidation} = objMiddleware
 const { objMovie: movieValidation} = objMiddleware
