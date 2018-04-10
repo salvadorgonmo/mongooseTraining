@@ -15,8 +15,8 @@ Router.get('/serie', serieController.get)
 //Users Controllers 
 Router.delete('/user/:id', userController.deleteOne)
 Router.put('/user/:id', userController.update)
-Router.post('/user', userController.post)
-Router.get('/user', userController.get)
+Router.post('/user/:id', userController.post)
+Router.get('/user/:id', userController.get)
 
 //Account Routes
 Router.delete('/account/:id', accountController.deleteOne)
