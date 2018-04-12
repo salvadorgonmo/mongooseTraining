@@ -6,31 +6,30 @@ const accountController = require('./controllers/accountController')
 const movieController = require('./controllers/moviesController')
 const documentalController = require('./controllers/documentalsController')
 const authenticationController = require('./controllers/authenticationController')
+const authentication = require('./middlewares/authentication')
 
 //Authentication Routes
-Router.post('/signin', authenticationController.signin)
 Router.post('/login', authenticationController.login)
 Router.get('/logout', authenticationController.logout)
+
+//Account Routes
+Router.post('/signin', accountController.post)
+Router.get('/account', authentication.requiresLogin, accountController.get) //get all the accounts
+Router.put('/account/:id', authentication.requiresLogin, accountController.update)
+Router.delete('/account/:id', authentication.requiresLogin, accountController.deleteOne)
+Router.get('/account/:id', authentication.requiresLogin, accountController.getOne) //get a specific account
+
+//Users Controllers 
+Router.delete('/account/:account_id/user/:id', authentication.requiresLogin, userController.deleteOne)
+Router.put('/account/:account_id/user/:id', authentication.requiresLogin,userController.update)
+Router.post('/account/:account_id/user', authentication.requiresLogin,userController.post)
+Router.get('/account/:account_id/user', authentication.requiresLogin, userController.get)
 
 //Serie Routes
 Router.delete('/serie/:id', serieController.deleteOne)
 Router.put('/serie/:id', serieController.update)
 Router.post('/serie', serieController.post)
 Router.get('/serie', serieController.get)
-
-//Users Controllers 
-Router.delete('/account/:account_id/user/:id', authenticationController.requiresLogin, userController.deleteOne)
-Router.put('/account/:account_id/user/:id', authenticationController.requiresLogin,userController.update)
-Router.post('/account/:account_id/user', authenticationController.requiresLogin,userController.post)
-Router.get('/account/:account_id/user', authenticationController.requiresLogin, userController.get)
-
-//Account Routes
-Router.delete('/account/:id', authenticationController.requiresLogin, accountController.deleteOne)
-Router.put('/account/:id', authenticationController.requiresLogin, accountController.update)
-Router.post('/account', authenticationController.requiresLogin, accountController.post)
-Router.get('/account', authenticationController.requiresLogin, accountController.get)
-
-Router.get('/account/:id', authenticationController.requiresLogin, accountController.getOne)
 
 //Movie Routes
 Router.delete('/movie/:id', movieController.deleteOne)

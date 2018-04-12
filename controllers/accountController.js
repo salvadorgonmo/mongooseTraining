@@ -1,15 +1,27 @@
 const AccountModel = require('../models/account')
 
 const post = async (req, res) => {
-    const newSchema = new AccountModel(req.body)
-    console.log(newSchema.users)
-    await newSchema.save(function(err){
-        if(err){
-            res.status(500).send("Account not created")
-        }else{
-            res.json({newSchema})
+    if(req.body.email && req.body.password){
+        var accountData = {
+            email: req.body.email,
+            password: req.body.password
         }
-    })
+
+        console.log(accountData)
+
+        //use schema.create to insert data into the db
+        await AccountModel.create(accountData, function(err, account){
+            console.log(account)
+            if(err){
+                console.log(err)
+                return res.status(500).send("Something went wrong creating your account or the account already exist")
+            }
+            res.send("Account created")
+        })
+    }
+    else{
+        res.status(400).send("You should provide an email and a password")
+    }
 }
   
 const get = function (req, res) {
