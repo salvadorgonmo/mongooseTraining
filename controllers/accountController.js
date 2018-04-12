@@ -4,7 +4,8 @@ const post = async (req, res) => {
     if(req.body.email && req.body.password){
         var accountData = {
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            phone: req.body.phone
         }
 
         console.log(accountData)
